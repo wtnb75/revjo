@@ -1,3 +1,10 @@
+# Reverse-jo
+
+- rjo convert $(jo hello=world)
+  - `hello=world`
+- jo hello=world | rjo convert | jo
+  - `{"hello":"world"}`
+
 # Install
 
 - `pip install rjo`

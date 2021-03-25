@@ -8,7 +8,7 @@ def prefix(data) -> str:
     return ""
 
 
-def convert(data) -> str:
+def convert(data, pre="", post="") -> str:
     if data is None:
         return "null"
     elif isinstance(data, bool):
@@ -19,7 +19,9 @@ def convert(data) -> str:
     elif isinstance(data, (int, float)):
         return str(data)
     elif isinstance(data, (list, tuple)):
-        return "\"$(jo -a -- " + " ".join(["{}{}".format(prefix(x), convert(x)) for x in data]) + ")\""
+        return pre + "-a -- " + " ".join(
+            ["{}{}".format(prefix(x), convert(x, pre="\"$(jo ", post=")\""))
+             for x in data]) + post
     elif isinstance(data, str):
         if data.startswith("@"):
             data = "\\"+data
@@ -27,8 +29,11 @@ def convert(data) -> str:
     elif isinstance(data, dict):
         if len(data) == 0:
             return '{}'
-        return "\"$(jo -- " + " ".join([
-            "{}{}={}".format(prefix(v), convert(k), convert(v))
-            for k, v in data.items()]) + ")\""
+        res = pre + " ".join([
+            "{}{}={}".format(prefix(v), convert(k), convert(v, pre="\"$(jo ", post=")\""))
+            for k, v in data.items()]) + post
+        if res.startswith("-"):
+            return "-- "+res
+        return res
     else:
         raise ValueError("unsupported type: {}".format(type(data)))

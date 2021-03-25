@@ -21,7 +21,7 @@ def json_loads_iter(s: str):
 
 
 def jo(s: str):
-    r = subprocess.run("echo " + s, shell=True, capture_output=True)
+    r = subprocess.run("jo " + s, shell=True, capture_output=True)
     assert r.returncode == 0
     return json.loads(r.stdout)
 
