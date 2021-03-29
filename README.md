@@ -1,25 +1,25 @@
 # Reverse-jo
 
-- rjo convert $(jo hello=world)
+- revjo convert $(jo hello=world)
   - `hello=world`
-- jo hello=world | rjo convert | jo
+- jo hello=world | revjo convert | jo
   - `{"hello":"world"}`
 
 # Install
 
-- `pip install rjo`
-- or... `whalebrew install ghcr.io/wtnb75/rjo`
+- `pip install revjo`
+- or... `whalebrew install ghcr.io/wtnb75/revjo`
 
 # Usage
 
 ```
-# rjo --help
+# revjo --help
   :
 ```
 
 # Links
 
-- [pypi](https://pypi.org/project/rjo/)
-- [API documents](https://wtnb75.github.io/rjo/)
-- [coverage](https://wtnb75.github.io/rjo/coverage/)
-- ~~[local pypi repo](https://wtnb75.github.io/rjo/dist/)~~
+- [pypi](https://pypi.org/project/revjo/)
+- [API documents](https://wtnb75.github.io/revjo/)
+- [coverage](https://wtnb75.github.io/revjo/coverage/)
+- ~~[local pypi repo](https://wtnb75.github.io/revjo/dist/)~~

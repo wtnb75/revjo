@@ -2,8 +2,8 @@ import unittest
 from click.testing import CliRunner
 import json
 import tempfile
-from rjo._cli import cli
-from rjo import VERSION
+from revjo._cli import cli
+from revjo import VERSION
 
 
 class TestCLI(unittest.TestCase):
@@ -20,7 +20,7 @@ class TestCLI(unittest.TestCase):
     def test_version(self):
         res = self.runner.invoke(cli, ["--version"])
         self.assertEqual(0, res.exit_code)
-        self.assertEqual("rjo, version {}".format(VERSION), res.output.strip())
+        self.assertEqual("revjo, version {}".format(VERSION), res.output.strip())
 
     def test_invalid_help(self):
         res = self.runner.invoke(cli, ["invalid"])

@@ -1,7 +1,7 @@
 [nosetests]
 with-doctest=1
 with-coverage=1
-cover-package=rjo
+cover-package=revjo
 cover-html=1
 cover-xml=1
 cover-erase=1

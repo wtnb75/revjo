@@ -2,7 +2,7 @@ import unittest
 import os
 import json
 import subprocess
-from rjo import convert
+from revjo import convert
 from logging import getLogger
 
 

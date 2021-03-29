@@ -4,12 +4,12 @@ import functools
 from logging import getLogger, basicConfig, INFO, DEBUG
 import click
 from .version import VERSION
-from .rjo import convert
+from .revjo import convert
 
 log = getLogger(__name__)
 
 
-@click.version_option(version=VERSION, prog_name="rjo")
+@click.version_option(version=VERSION, prog_name="revjo")
 @click.group(invoke_without_command=True)
 @click.pass_context
 def cli(ctx):
