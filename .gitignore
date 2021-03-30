@@ -1,0 +1,17 @@
+bin
+lib
+include
+pyvenv.cfg
+etc
+man
+share
+.ipynb_checkpoints
+cover
+coverage.xml
+.coverage
+dist
+build
+*.egg-info
+site-packages
+__pycache__
+*.pyc
