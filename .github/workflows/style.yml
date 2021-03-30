@@ -2,14 +2,14 @@ name: CI
 
 on:
   push:
-    branches-ignore: [master, gh-pages]
+    branches-ignore: [main, gh-pages]
 
 jobs:
   style:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: setup python 3.9
       uses: actions/setup-python@v1
       with:
