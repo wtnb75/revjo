@@ -33,8 +33,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt -r requirements-dev.txt
-        sudo apt update
-        sudo apt install -y jo
+        # sudo apt update
+        # sudo apt install -y jo
+        # sudo apt install -y gcc make curl
+        curl -LO https://github.com/jpmens/jo/releases/download/1.4/jo-1.4.tar.gz
+        tar xfz jo-1.4.tar.gz
+        cd jo-1.4 && make && sudo make install
     - name: run test
       run: nosetests -c .noserc
     - name: check coverage

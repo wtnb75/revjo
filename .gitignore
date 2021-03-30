@@ -13,3 +13,5 @@ dist
 build
 *.egg-info
 site-packages
+__pycache__
+*.pyc
