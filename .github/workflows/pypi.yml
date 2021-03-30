@@ -27,7 +27,7 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt -r requirements-dev.txt
     - name: versioning
-      run: "echo \"VERSION = '${GITHUB_REF##*/v}'\" > /evjo/version.py"
+      run: "echo \"VERSION = '${GITHUB_REF##*/v}'\" > revjo/version.py"
     - name: build wheel
       run: python setup.py bdist_wheel
     - name: check

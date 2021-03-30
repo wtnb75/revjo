@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: setup python 3.8
+    - name: setup python 3.9
       uses: actions/setup-python@v1
       with:
-        python-version: 3.8
+        python-version: 3.9
     - name: get pip cache
       id: pip-cache
       run: |
@@ -29,6 +29,6 @@ jobs:
         python -m pip install --upgrade pip
         pip install pyflakes pycodestyle
     - name: check coding style
-      run: pycodestyle --max-line-length=120 revjo
+      run: pycodestyle --max-line-length=120 revjo tests
     - name: pyflakes
       run: pyflakes revjo/[^_]*.py revjo/_cli.py
