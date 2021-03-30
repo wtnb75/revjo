@@ -25,6 +25,11 @@ jobs:
         restore-keys: ${{ runner.os }}-pip-
     - name: Install dev-dependencies
       run: pip install -r requirements.txt -r requirements-dev.txt
+    - name: Install jo
+      run: |
+        curl -LO https://github.com/jpmens/jo/releases/download/1.4/jo-1.4.tar.gz
+        tar xfz jo-1.4.tar.gz
+        cd jo-1.4 && ./configure && make && sudo make install
     - name: coverage test
       run: nosetests -c .noserc
     - name: build wheel
@@ -37,12 +42,14 @@ jobs:
       run: make PYTHONPATH=.. -C docs html
     - name: make output dir
       run: mkdir output/
+    - name: copy docs
+      run: cp -r docs/_build/html/* output/
+    - name: copy coverage report
+      run: |
+        cp -r cover/ output/coverage/
+        cp coverage.xml output/coverage/
     - name: disable jekyll
       run: touch output/.nojekyll
-    - name: copy docs
-      run: cp -r docs/_build/html/ output/
-    - name: copy coverage report
-      run: cp -r docs/_build/html/ output/cover/
     #- name: create index
     #  run: dir2pi -S dist
     #- name: merge contents
