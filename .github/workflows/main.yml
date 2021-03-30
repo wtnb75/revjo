@@ -38,7 +38,7 @@ jobs:
         # sudo apt install -y gcc make curl
         curl -LO https://github.com/jpmens/jo/releases/download/1.4/jo-1.4.tar.gz
         tar xfz jo-1.4.tar.gz
-        cd jo-1.4 && make && sudo make install
+        cd jo-1.4 && ./configure && make && sudo make install
     - name: run test
       run: nosetests -c .noserc
     - name: check coverage
