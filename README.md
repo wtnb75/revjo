@@ -22,4 +22,3 @@
 - [pypi](https://pypi.org/project/revjo/)
 - [API documents](https://wtnb75.github.io/revjo/)
 - [coverage](https://wtnb75.github.io/revjo/coverage/)
-- ~~[local pypi repo](https://wtnb75.github.io/revjo/dist/)~~

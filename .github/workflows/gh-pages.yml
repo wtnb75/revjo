@@ -42,12 +42,14 @@ jobs:
       run: make PYTHONPATH=.. -C docs html
     - name: make output dir
       run: mkdir output/
-    - name: disable jekyll
-      run: touch output/.nojekyll
     - name: copy docs
       run: cp -r docs/_build/html/ output/
     - name: copy coverage report
-      run: cp -r docs/_build/html/ output/cover/
+      run: |
+        cp -r cover/ output/coverage/
+        cp coverage.xml output/coverage/
+    - name: disable jekyll
+      run: touch output/.nojekyll
     #- name: create index
     #  run: dir2pi -S dist
     #- name: merge contents
