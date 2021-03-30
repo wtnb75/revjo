@@ -43,7 +43,7 @@ jobs:
     - name: make output dir
       run: mkdir output/
     - name: copy docs
-      run: cp -r docs/_build/html/ output/
+      run: cp -r docs/_build/html/* output/
     - name: copy coverage report
       run: |
         cp -r cover/ output/coverage/
