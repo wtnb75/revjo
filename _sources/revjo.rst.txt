@@ -1,0 +1,29 @@
+revjo package
+=============
+
+Submodules
+----------
+
+revjo.revjo module
+------------------
+
+.. automodule:: revjo.revjo
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+revjo.version module
+--------------------
+
+.. automodule:: revjo.version
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Module contents
+---------------
+
+.. automodule:: revjo
+   :members:
+   :undoc-members:
+   :show-inheritance:
