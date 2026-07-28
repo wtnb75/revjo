@@ -1,10 +1,11 @@
-import unittest
-import os
 import json
+import os
 import subprocess
-from revjo import convert
+import unittest
 from logging import getLogger
+from typing import ClassVar
 
+from revjo import convert
 
 _log = getLogger(__name__)
 
@@ -21,13 +22,13 @@ def json_loads_iter(s: str):
 
 
 def jo(s: str):
-    r = subprocess.run("jo " + s, shell=True, capture_output=True)
+    r = subprocess.run("jo " + s, shell=True, capture_output=True, check=False)
     assert r.returncode == 0
     return json.loads(r.stdout)
 
 
 class TestByData(unittest.TestCase):
-    testdata = []
+    testdata: ClassVar = []
 
     @classmethod
     def setUpClass(cls):
@@ -41,4 +42,4 @@ class TestByData(unittest.TestCase):
             _log.debug("jostr: %s", jostr)
             res = jo(jostr)
             _log.debug("jo: %s", res)
-            self.assertEquals(i, res)
+            self.assertEqual(i, res)
