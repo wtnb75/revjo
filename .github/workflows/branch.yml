@@ -1,13 +1,12 @@
-name: main
+name: branch
 
 on:
   push:
-    branches: [main]
+    branches-ignore: [main, gh-pages]
   workflow_dispatch:
 
 permissions:
   packages: write
-  pages: write
   id-token: write
 
 jobs:
@@ -31,11 +30,6 @@ jobs:
       with:
         dirs: "cover docs"
         #pydist: dist
-    - name: Setup Pages
-      uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
-    - name: deploy pages
-      uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
-      id: deployment
     - uses: wtnb75/actions/docker@d46e83a56abd145ef1af4a26bc9837ecd8ca4598 # v1.0.7
       with:
         push: 'true'

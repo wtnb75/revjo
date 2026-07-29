@@ -1,9 +1,11 @@
-import unittest
-from click.testing import CliRunner
 import json
 import tempfile
-from revjo._cli import cli
+import unittest
+
+from click.testing import CliRunner
+
 from revjo import VERSION
+from revjo._cli import cli
 
 
 class TestCLI(unittest.TestCase):
@@ -20,7 +22,7 @@ class TestCLI(unittest.TestCase):
     def test_version(self):
         res = self.runner.invoke(cli, ["--version"])
         self.assertEqual(0, res.exit_code)
-        self.assertEqual("revjo, version {}".format(VERSION), res.output.strip())
+        self.assertEqual(f"revjo, version {VERSION}", res.output.strip())
 
     def test_invalid_help(self):
         res = self.runner.invoke(cli, ["invalid"])
@@ -33,7 +35,9 @@ class TestCLI(unittest.TestCase):
         self.assertIn(" --verbose ", res.output)
 
     def test_convert_verbose(self):
-        res = self.runner.invoke(cli, ["convert", "--verbose", json.dumps({"hello": "world"})])
+        res = self.runner.invoke(
+            cli, ["convert", "--verbose", json.dumps({"hello": "world"})]
+        )
         self.assertEqual(0, res.exit_code)
         self.assertIn("hello=world", res.output.strip())
 
@@ -43,12 +47,18 @@ class TestCLI(unittest.TestCase):
         self.assertIn("hello=world", res.output.strip())
 
     def test_convert_input(self):
-        res = self.runner.invoke(cli, ["convert"], input=json.dumps({"hello": "world"}, indent=2))
+        res = self.runner.invoke(
+            cli, ["convert"], input=json.dumps({"hello": "world"}, indent=2)
+        )
         self.assertEqual(0, res.exit_code)
         self.assertIn("hello=world", res.output.strip())
 
     def test_convert_input_stdin(self):
-        res = self.runner.invoke(cli, ["convert", "--input", "-"], input=json.dumps({"hello": "world"}, indent=2))
+        res = self.runner.invoke(
+            cli,
+            ["convert", "--input", "-"],
+            input=json.dumps({"hello": "world"}, indent=2),
+        )
         self.assertEqual(0, res.exit_code)
         self.assertIn("hello=world", res.output.strip())
 

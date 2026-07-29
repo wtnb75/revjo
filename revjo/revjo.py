@@ -2,9 +2,10 @@ import shlex
 
 
 def prefix(data) -> str:
-    if isinstance(data, str):
-        if data in ("true", "false", "") or data[0].isdigit() or data.startswith("-"):
-            return "-s "
+    if isinstance(data, str) and (
+        data in ("true", "false", "") or data[0].isdigit() or data.startswith("-")
+    ):
+        return "-s "
     return ""
 
 
@@ -19,21 +20,38 @@ def convert(data, pre="", post="") -> str:
     elif isinstance(data, (int, float)):
         return str(data)
     elif isinstance(data, (list, tuple)):
-        return pre + "-a -- " + " ".join(
-            ["{}{}".format(prefix(x), convert(x, pre="\"$(jo ", post=")\""))
-             for x in data]) + post
+        return (
+            pre
+            + "-a -- "
+            + " ".join(
+                [
+                    "{}{}".format(prefix(x), convert(x, pre='"$(jo ', post=')"'))
+                    for x in data
+                ]
+            )
+            + post
+        )
     elif isinstance(data, str):
         if data.startswith("@"):
-            data = "\\"+data
+            data = "\\" + data
         return shlex.quote(data)
     elif isinstance(data, dict):
         if len(data) == 0:
-            return '{}'
-        res = pre + " ".join([
-            "{}{}={}".format(prefix(v), convert(k), convert(v, pre="\"$(jo ", post=")\""))
-            for k, v in data.items()]) + post
+            return "{}"
+        res = (
+            pre
+            + " ".join(
+                [
+                    "{}{}={}".format(
+                        prefix(v), convert(k), convert(v, pre='"$(jo ', post=')"')
+                    )
+                    for k, v in data.items()
+                ]
+            )
+            + post
+        )
         if res.startswith("-"):
-            return "-- "+res
+            return "-- " + res
         return res
     else:
-        raise ValueError("unsupported type: {}".format(type(data)))
+        raise ValueError(f"unsupported type: {type(data)}")
